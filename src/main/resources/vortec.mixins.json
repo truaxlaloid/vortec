@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.vortec.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "math.MthMixin",
+    "physics.CollisionSpliteratorFastPathMixin",
+    "physics.VoxelShapeCacheMixin"
+  ],
+  "client": [
+    "client.GlStateManagerMixin",
+    "client.SectionRenderDispatcherMixin",
+    "client.VertexConsumerAlignmentMixin"
+  ]
+}
