@@ -8,12 +8,9 @@
   },
   "mixins": [
     "math.MthMixin",
-    "physics.CollisionSpliteratorFastPathMixin",
     "physics.VoxelShapeCacheMixin"
   ],
   "client": [
-    "client.GlStateManagerMixin",
-    "client.SectionRenderDispatcherMixin",
-    "client.VertexConsumerAlignmentMixin"
+    "client.GlStateManagerMixin"
   ]
 }
