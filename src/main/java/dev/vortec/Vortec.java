@@ -1,7 +1,9 @@
 package dev.vortec;
 
+import dev.vortec.azdo.PersistentMappedPool;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,13 +13,22 @@ public class Vortec {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     static {
-        // Leave dedicated core headroom for Client Render, Server Tick, and Rapier/Aeronautics physics
+        // Dedicate 6 cores to background loading/compilation, preventing starvation of
+        // the Server thread, Client render loop, and Sable's Rapier physics simulation.
         if (System.getProperty("max.bg.threads") == null) {
             System.setProperty("max.bg.threads", "6");
         }
     }
 
     public Vortec(IEventBus modEventBus) {
-        LOGGER.info("[Vortec] Initialized custom hardware execution profiles: AVX2 Active, 8 Physical Threads Optimized, Chunk Pipeline Accelerated.");
+        LOGGER.info("[Vortec] Initializing AZDO & SIMD Engine tailored for i7-9700 + RDNA 2.");
+        modEventBus.addListener(this::onClientSetup);
+    }
+
+    private void onClientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            PersistentMappedPool.init();
+            LOGGER.info("[Vortec] AZDO Persistent Coherent Staging Pool initialized successfully.");
+        });
     }
 }

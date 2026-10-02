@@ -10,7 +10,7 @@ public abstract class MthMixin {
 
     /**
      * @author Vortec
-     * @reason Route trigonometric evaluations to L1-cache aligned fast table
+     * @reason L1-cache aligned fast trigonometry table for physics and kinematics
      */
     @Overwrite
     public static float sin(float value) {
@@ -19,7 +19,7 @@ public abstract class MthMixin {
 
     /**
      * @author Vortec
-     * @reason Route trigonometric evaluations to L1-cache aligned fast table
+     * @reason L1-cache aligned fast trigonometry table for physics and kinematics
      */
     @Overwrite
     public static float cos(float value) {

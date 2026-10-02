@@ -7,7 +7,7 @@ modId = "vortec"
 version = "1.0.0"
 displayName = "Vortec Engine"
 authors = "Engineered"
-description = '''Hardware-tailored execution engine for AVX2 and RDNA 2, providing ultra-low tick latency for Create and Sable.'''
+description = '''Low-Level AZDO & SIMD Hardware Execution Engine tailored for AVX2 and AMD RDNA 2.'''
 
 [[mixins]]
 config = "vortec.mixins.json"
