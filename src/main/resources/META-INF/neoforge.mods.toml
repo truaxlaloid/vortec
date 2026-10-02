@@ -1,38 +1,38 @@
 modLoader = "javafml"
-loaderVersion = "${loader_version_range}"
-license = "${mod_license}"
+loaderVersion = "[4,)"
+license = "MIT"
 
 [[mods]]
-modId = "${mod_id}"
-version = "${mod_version}"
-displayName = "${mod_name}"
-authors = "${mod_authors}"
-description = "Hardware-tailored execution engine for AVX2 and RDNA 2, providing ultra-low tick latency for Create and Sable."
+modId = "vortec"
+version = "1.0.0"
+displayName = "Vortec Engine"
+authors = "Engineered"
+description = '''Hardware-tailored execution engine for AVX2 and RDNA 2, providing ultra-low tick latency for Create and Sable.'''
 
 [[mixins]]
 config = "vortec.mixins.json"
 
-[[dependencies."${mod_id}"]]
+[[dependencies.vortec]]
 modId = "neoforge"
 type = "required"
-versionRange = "${neo_version_range}"
+versionRange = "[21.1.228,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies."${mod_id}"]]
+[[dependencies.vortec]]
 modId = "minecraft"
 type = "required"
-versionRange = "${minecraft_version_range}"
+versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies."${mod_id}"]]
+[[dependencies.vortec]]
 modId = "sable"
 type = "optional"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies."${mod_id}"]]
+[[dependencies.vortec]]
 modId = "create"
 type = "optional"
 ordering = "AFTER"
