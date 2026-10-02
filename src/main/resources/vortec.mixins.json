@@ -9,6 +9,7 @@
   "mixins": [
     "chunk.LevelChunkSectionMixin",
     "math.MthMixin",
+    "physics.ShapesMixin",
     "physics.VoxelShapeCacheMixin"
   ],
   "client": [

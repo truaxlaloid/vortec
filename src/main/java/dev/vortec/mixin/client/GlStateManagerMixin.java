@@ -12,6 +12,7 @@ public abstract class GlStateManagerMixin {
 
     @Unique private static boolean vortec$depthMaskState = true;
     @Unique private static boolean vortec$cullState = true;
+    @Unique private static boolean vortec$blendState = false;
 
     @Inject(method = "_depthMask", at = @At("HEAD"), cancellable = true)
     private static void vortec$filterRedundantDepthMask(boolean flag, CallbackInfo ci) {
@@ -38,5 +39,23 @@ public abstract class GlStateManagerMixin {
             return;
         }
         vortec$cullState = false;
+    }
+
+    @Inject(method = "_enableBlend", at = @At("HEAD"), cancellable = true)
+    private static void vortec$filterRedundantEnableBlend(CallbackInfo ci) {
+        if (vortec$blendState) {
+            ci.cancel();
+            return;
+        }
+        vortec$blendState = true;
+    }
+
+    @Inject(method = "_disableBlend", at = @At("HEAD"), cancellable = true)
+    private static void vortec$filterRedundantDisableBlend(CallbackInfo ci) {
+        if (!vortec$blendState) {
+            ci.cancel();
+            return;
+        }
+        vortec$blendState = false;
     }
 }

@@ -3,6 +3,8 @@ package dev.vortec.mixin.chunk;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,6 +20,13 @@ public abstract class LevelChunkSectionMixin {
     private void vortec$fastAirBlockState(int x, int y, int z, CallbackInfoReturnable<BlockState> cir) {
         if (this.hasOnlyAir()) {
             cir.setReturnValue(Blocks.AIR.defaultBlockState());
+        }
+    }
+
+    @Inject(method = "getFluidState", at = @At("HEAD"), cancellable = true)
+    private void vortec$fastAirFluidState(int x, int y, int z, CallbackInfoReturnable<FluidState> cir) {
+        if (this.hasOnlyAir()) {
+            cir.setReturnValue(Fluids.EMPTY.defaultFluidState());
         }
     }
 }
