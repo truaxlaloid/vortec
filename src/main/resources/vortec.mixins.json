@@ -7,10 +7,13 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "chunk.LevelChunkSectionMixin",
     "math.MthMixin",
     "physics.VoxelShapeCacheMixin"
   ],
   "client": [
-    "client.GlStateManagerMixin"
+    "client.FrustumMixin",
+    "client.GlStateManagerMixin",
+    "client.PoseStackMixin"
   ]
 }
